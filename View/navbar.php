@@ -86,7 +86,7 @@
               </p>
               <h4 class="modal-title text-center text-primary" id="myModalLabel">Iniciar sesión</h4>
             </div>
-            <form action="process/login.php" method="post" role="form" class="FormCatElec" data-form="login">
+            <form action="../Controller/login.php" method="post" role="form" class="FormCatElec" data-form="login">
                 <div class="form-group label-floating">
                     <label class="control-label"><span class="glyphicon glyphicon-user"></span>&nbsp;Nombre</label>
                     <input type="text" class="form-control" name="nombre-login" required="">
