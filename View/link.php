@@ -15,7 +15,7 @@
 <script src="View/js/autohidingnavbar.min.js"></script>
 <script src="View/js/sweetalert.min.js"></script>
 <script src="View/js/jquery.dataTables.min.js"></script>
-<script src="View/js/main.js"></script>
+<script src="./View/js/main.js"></script>
 <script>
 	$(document).ready(function(){
 		$.material.init();

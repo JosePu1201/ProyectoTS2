@@ -5,7 +5,7 @@
 <nav id="navbar-auto-hidden">
         <div class="row hidden-xs">
             <div class="col-xs-4">
-                <p class="text-navbar tittles-pages-logo">NICE ACCESORIOS</p>
+                <p class="text-navbar tittles-pages-logo">COMERCIO ELECTRONICO</p>
             </div>
             <div class="col-xs-8">
               <div class="contenedor-tabla pull-right">
@@ -15,7 +15,6 @@
                   <?php
                       if(!$_SESSION['nombreAdmin']==""){
                           echo ' 
-                              <a href="carrito.php" class="table-cell-td">Carrito</a>
                               <a href="configAdmin.php" class="table-cell-td">Administración</a>
                               <a href="#!" class="table-cell-td exit-system">
                                   <i class="fa fa-user"></i>&nbsp;&nbsp;'.$_SESSION['nombreAdmin'].'
@@ -23,9 +22,6 @@
                            ';
                       }else if(!$_SESSION['nombreUser']==""){
                           echo ' 
-
-                              <a href="pedido.php" class="table-cell-td">Pedido</a>
-                              <a href="carrito.php" class="table-cell-td">Carrito</a>
                               <a href="#!" class="table-cell-td exit-system">
                               <i class="fa fa-user"></i>&nbsp;&nbsp;'.$_SESSION['nombreUser'].'
                               </a>
@@ -86,7 +82,7 @@
               </p>
               <h4 class="modal-title text-center text-primary" id="myModalLabel">Iniciar sesión</h4>
             </div>
-            <form action="../Controller/login.php" method="post" role="form" class="FormCatElec" data-form="login">
+            <form action="./Controller/login.php" method="post" role="form" class="FormCatElec" data-form="login">
                 <div class="form-group label-floating">
                     <label class="control-label"><span class="glyphicon glyphicon-user"></span>&nbsp;Nombre</label>
                     <input type="text" class="form-control" name="nombre-login" required="">
@@ -139,7 +135,6 @@
                     echo '<li><a href="configAdmin.php">Administración</a></li>';
                 }elseif(!$_SESSION['nombreUser']==""){
                     echo '
-                    <li><a href="pedido.php">Pedido</a></li>
                     <li><a href="#" class="glyphicon glyphicon-cog userConBtn" data-code="'.$_SESSION['UserNIT'].'"> Configuraciones</a></li>
                     ';
                 }else{
