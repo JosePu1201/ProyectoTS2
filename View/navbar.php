@@ -11,10 +11,11 @@
               <div class="contenedor-tabla pull-right">
                 <div class="contenedor-tr">
                   <a href="index.php" class="table-cell-td">Inicio</a>
-                  <a href="product.php" class="table-cell-td">Productos</a>
                   <?php
                       if(!$_SESSION['nombreAdmin']==""){
                           echo ' 
+
+                              <a href="configAdmin.php" class="table-cell-td">Publicaciones reportadas</a>
                               <a href="configAdmin.php" class="table-cell-td">Administración</a>
                               <a href="#!" class="table-cell-td exit-system">
                                   <i class="fa fa-user"></i>&nbsp;&nbsp;'.$_SESSION['nombreAdmin'].'
@@ -22,6 +23,8 @@
                            ';
                       }else if(!$_SESSION['nombreUser']==""){
                           echo ' 
+                          <a href="View/publicacion.php" class="table-cell-td">Publicaciones</a>
+                              <a href="NewPost.php" class="table-cell-td">Nueva publicacion</a>
                               <a href="#!" class="table-cell-td exit-system">
                               <i class="fa fa-user"></i>&nbsp;&nbsp;'.$_SESSION['nombreUser'].'
                               </a>
@@ -82,7 +85,7 @@
               </p>
               <h4 class="modal-title text-center text-primary" id="myModalLabel">Iniciar sesión</h4>
             </div>
-            <form action="./Controller/login.php" method="post" role="form" class="FormCatElec" data-form="login">
+            <form action="Controller/login.php" method="post" role="form" class="FormCatElec" data-form="login">
                 <div class="form-group label-floating">
                     <label class="control-label"><span class="glyphicon glyphicon-user"></span>&nbsp;Nombre</label>
                     <input type="text" class="form-control" name="nombre-login" required="">
@@ -121,15 +124,13 @@
     
     <div id="mobile-menu-list" class="hidden-sm hidden-md hidden-lg">
         <br>
-        <h3 class="text-center tittles-pages-logo">NICE ACCESORIOS</h3>
+        <h3 class="text-center tittles-pages-logo">COMERCIO ELECTRONICO</h3>
         <button class="btn btn-default button-mobile-menu" id="button-close-mobile-menu">
         <i class="fa fa-times"></i>
         </button>
         <br><br>
         <ul class="list-unstyled text-center">
-            <li><a href="index.php">Inicio</a></li>
-            <li><a href="product.php">Productos</a></li>
-            <li><a href="carrito.php">Carrito</a></li>
+            
             <?php 
                 if(!$_SESSION['nombreAdmin']==""){
                     echo '<li><a href="configAdmin.php">Administración</a></li>';
@@ -146,7 +147,7 @@
     <?php if(isset($_SESSION['nombreUser'])): ?>
     <div class="modal fade" id="ModalUpUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
       <div class="modal-dialog" role="document">
-        <form class="modal-content FormCatElec" action="process/updateClient.php" method="POST" data-form="save" autocomplete="off">
+        <form class="modal-content FormCatElec" action="Controller/updateClient.php" method="POST" data-form="save" autocomplete="off">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel">Configuraciones</h4>
