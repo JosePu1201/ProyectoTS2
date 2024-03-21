@@ -14,9 +14,7 @@
                   <?php
                       if(!$_SESSION['nombreAdmin']==""){
                           echo ' 
-
-                              <a href="configAdmin.php" class="table-cell-td">Publicaciones reportadas</a>
-                              <a href="configAdmin.php" class="table-cell-td">Administración</a>
+                              <a href="adminView.php" class="table-cell-td">Administración</a>
                               <a href="#!" class="table-cell-td exit-system">
                                   <i class="fa fa-user"></i>&nbsp;&nbsp;'.$_SESSION['nombreAdmin'].'
                               </a>
@@ -35,7 +33,7 @@
                       }else{
                           echo ' 
 
-                          <a href="registration.php" class="table-cell-td">Registro</a>
+                          <a href="registro.php" class="table-cell-td">Registro</a>
                               <a href="#" class="table-cell-td" data-toggle="modal" data-target=".modal-login">
                                   <i class="fa fa-user"></i>&nbsp;&nbsp;Login
                               </a>
@@ -85,7 +83,7 @@
               </p>
               <h4 class="modal-title text-center text-primary" id="myModalLabel">Iniciar sesión</h4>
             </div>
-            <form action="Controller/login.php" method="post" role="form" class="FormCatElec" data-form="login">
+            <form action="./Controller/login.php" method="post" role="form" class="FormCatElec" data-form="login">
                 <div class="form-group label-floating">
                     <label class="control-label"><span class="glyphicon glyphicon-user"></span>&nbsp;Nombre</label>
                     <input type="text" class="form-control" name="nombre-login" required="">

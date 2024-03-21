@@ -1,40 +1,23 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <title>Registro</title>
-    <?php include '/link.php'; ?>
-</head>
-<body id="container-page-registration">
-    <?php include './navbar.php'; ?>
-    <section id="form-registration">
+
         <div class="container">
             <div class="page-header">
-              <h1>REGISTRO <small class="tittles-pages-logo">NICE ACCESORIOS</small></h1>
+              <h1>REGISTRO <small class="tittles-pages-logo">COMERCIO ELECTRONICO</small></h1>
             </div>
             <p class="lead text-center">
             
             </p>
             <div class="row">
-                <div class="col-sm-5 text-center">
-                    <figure>
-                      <img src="./assets/img/registro.jpg" alt="store" class="img-responsive">
-                    </figure>
-                </div>
-                <div class="col-sm-7">
+                <div >
                     <div id="container-form">
                        <p class="text-center lead">Registro de Clientes</p>
                        <br><br>
-                       <form class="FormCatElec" action="process/regclien.php" role="form" method="POST" data-form="save">
+                       <p class="text-center lead">Por ser un usuario nuevo te daremos 150 monedas que podras usar en la tienda</p>
+                       <br><br>
+                       <form class="FormCatElec" action="Controller/regclien.php" role="form" method="POST" data-form="save">
                           <div class="container-fluid">
                             <div class="row">
                               <div class="col-xs-12">
                                 <legend><i class="fa fa-user"></i> &nbsp; Datos personales</legend>
-                              </div>
-                              <div class="col-xs-12">
-                                <div class="form-group label-floating">
-                                  <label class="control-label"><i class="fa fa-address-card-o" aria-hidden="true"></i>&nbsp; Ingrese su número de NIT</label>
-                                  <input class="form-control" type="text" required name="clien-nit" pattern="[0-9]{1,15}" title="Ingrese su número de NIT. Solamente números" maxlength="15" >
-                                </div>
                               </div>
                               <div class="col-xs-12 col-sm-6">
                                 <div class="form-group label-floating">
@@ -58,12 +41,6 @@
                                 <div class="form-group label-floating">
                                   <label class="control-label"><i class="fa fa-envelope-o" aria-hidden="true"></i>&nbsp; Ingrese su Email</label>
                                     <input class="form-control" type="email" required name="clien-email" title="Ingrese la dirección de su Email" maxlength="50">
-                                </div>
-                              </div>
-                              <div class="col-xs-12">
-                                <div class="form-group label-floating">
-                                  <label class="control-label"><i class="fa fa-home"></i>&nbsp; Ingrese su dirección</label>
-                                  <input class="form-control" type="text" required name="clien-dir" title="Ingrese la direción en la reside actualmente" maxlength="100">
                                 </div>
                               </div>
                               <div class="col-xs-12">
@@ -95,7 +72,4 @@
                 </div>
             </div>
         </div>
-    </section>
-    <?php include '/footer.php'; ?>
-</body>
-</html>
+

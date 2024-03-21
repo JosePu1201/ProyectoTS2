@@ -7,21 +7,200 @@
 </head>
 
 <body id="container-page-index">
-    <?php include './View/navbar.php'; ?>
-    <section id="reg-info-index">
-        <div class="container">
-            <div class="row">
-                <div class="col-xs-12 col-sm-6 text-center">
-                    <article style="margin-top:5%;">
-                        <p><i class="fa fa-users fa-4x"></i></p>
-                        <h3>Registrate</h3>
-                        <p>Registrate como usuario de <span class="tittles-pages-logo">CE</span> en un sencillo formulario para poder completar tus pedidos</p>
-                        
-                    </article>
+    <?php
+    session_start();
+    error_reporting(E_PARSE);
+    ?>
+    <section></section>
+    <nav id="navbar-auto-hidden">
+        <div class="row hidden-xs">
+            <div class="col-xs-4">
+                <p class="text-navbar tittles-pages-logo">COMERCIO ELECTRONICO</p>
+                <br>
+            </div>
+            <div class="col-xs-8">
+                <div class="contenedor-tabla pull-right">
+                    <br>
+                    <div class="contenedor-tr">
+                        <a href="index.php" class="table-cell-td">Inicio</a>
+                        <?php
+                        if (!$_SESSION['nombreAdmin'] == "") {
+                            echo ' 
+                              <a href="index.php?view=publicReport" class="table-cell-td">Publicaciones reportadas</a>
+                              <a href="index.php?view=solPubli" class="table-cell-td">Solicitudes de publicaciones</a>
+                              <a href="index.php?view=CategoriList" class="table-cell-td">Categorias</a>
+                              <a href="#!" class="table-cell-td exit-system">
+                                  <i class="fa fa-user"></i>&nbsp;&nbsp;' . $_SESSION['nombreAdmin'] . '
+                              </a>
+                           ';
+                        } else if (!$_SESSION['nombreUser'] == "") {
+                            include "./Model/configServer.php";
+                            include "./Model/consulSQL.php";
+                            $nombreUsaurio = $_SESSION['nombreUser'];
+                            $verBilletera = ejecutarSQL::consultar("SELECT Usuario, (MonedaCambio + MonedaVirtula) AS TotalMonedas FROM Billetera WHERE Usuario = '$nombreUsaurio'");
+                            $result ="";
+                            if($existe =  mysqli_fetch_assoc($verBilletera)){
+                                $result = $existe['TotalMonedas'];
+                            }
+                            else{
+                                $result = "no encontrador";
+                            }
+                            echo ' 
+                            <a class ="table-cell-td"> Mis monedas: '. $result . ' </a>
+                          <a href="index.php?view=publicacion" class="table-cell-td">Mis publicaciones</a>
+                              <a href="index.php?view=NewPost" class="table-cell-td">Nueva publicacion</a>
+                              <a href="#!" class="table-cell-td exit-system">
+                              <i class="fa fa-user"></i>&nbsp;&nbsp;' . $_SESSION['nombreUser'] . '
+                              </a>
+                              <a href="#!" class="table-cell-td userConBtn" data-code="' . $_SESSION['UserNIT'] . '">
+                                <i class="glyphicon glyphicon-cog"></i>
+                              </a>
+                           ';
+                        } else {
+                            echo ' 
+
+                          <a href="index.php?view=registro" class="table-cell-td">Registro</a>
+                              <a href="#" class="table-cell-td" data-toggle="modal" data-target=".modal-login">
+                                  <i class="fa fa-user"></i>&nbsp;&nbsp;Login
+                              </a>
+                           ';
+                        }
+                        ?>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+
+        <div class="row visible-xs"><!-- Mobile menu navbar -->
+            <div class="col-xs-12">
+                <button class="btn btn-default pull-left button-mobile-menu" id="btn-mobile-menu">
+                    <i class="fa fa-th-list"></i>&nbsp;&nbsp;Menú
+                </button>
+
+                <?php
+                if (!$_SESSION['nombreAdmin'] == "") {
+                    echo '
+                    <a href="#"  id="button-login-xs" class="elements-nav-xs exit-system">
+                        <i class="fa fa-user"></i>&nbsp; ' . $_SESSION['nombreAdmin'] . ' 
+                    </a>';
+                } else if (!$_SESSION['nombreUser'] == "") {
+                    echo '
+                    <a href="#"  id="button-login-xs" class="elements-nav-xs exit-system">
+                        <i class="fa fa-user"></i>&nbsp; ' . $_SESSION['nombreUser'] . ' 
+                    </a>';
+                } else {
+                    echo '
+                       <a href="#" data-toggle="modal" data-target=".modal-login" id="button-login-xs" class="elements-nav-xs">
+                        <i class="fa fa-user"></i>&nbsp; Iniciar Sesión
+                        </a> 
+                   ';
+                }
+                ?>
+            </div>
+        </div>
+    </nav>
+
+    <div class="modal fade modal-login" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content" id="modal-form-login" style="padding: 15px;">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <p class="text-center text-primary">
+                        <i class="fa fa-user-circle-o fa-3x" aria-hidden="true"></i>
+                    </p>
+                    <h4 class="modal-title text-center text-primary" id="myModalLabel">Iniciar sesión</h4>
+                </div>
+                <form action="./Controller/login.php" method="post" role="form" class="FormCatElec" data-form="login">
+                    <div class="form-group label-floating">
+                        <label class="control-label"><span class="glyphicon glyphicon-user"></span>&nbsp;Nombre</label>
+                        <input type="text" class="form-control" name="nombre-login" required="">
+                    </div>
+                    <div class="form-group label-floating">
+                        <label class="control-label"><span class="glyphicon glyphicon-lock"></span>&nbsp;Contraseña</label>
+                        <input type="password" class="form-control" name="clave-login" required="">
+                    </div>
+
+                    <p>¿Cómo iniciaras sesión?</p>
+
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" value="option1" checked="">
+                            Usuario
+                        </label>
+                    </div>
+
+                    <div class="radio">
+                        <label>
+                            <input type="radio" name="optionsRadios" value="option2">
+                            Administrador
+                        </label>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary btn-raised btn-sm">Iniciar sesión</button>
+                        <button type="button" class="btn btn-danger btn-raised btn-sm" data-dismiss="modal">Cancelar</button>
+                    </div>
+                    <div class="ResFormL" style="width: 100%; text-align: center; margin: 0;"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- Fin Modal login -->
+
+    <div id="mobile-menu-list" class="hidden-sm hidden-md hidden-lg">
+        <br>
+        <h3 class="text-center tittles-pages-logo">COMERCIO ELECTRONICO</h3>
+        <button class="btn btn-default button-mobile-menu" id="button-close-mobile-menu">
+            <i class="fa fa-times"></i>
+        </button>
+        <br><br>
+        <ul class="list-unstyled text-center">
+
+            <?php
+            if (!$_SESSION['nombreAdmin'] == "") {
+                echo '<li><a href="configAdmin.php">Administración</a></li>';
+            } elseif (!$_SESSION['nombreUser'] == "") {
+                echo '
+                    <li><a href="#" class="glyphicon glyphicon-cog userConBtn" data-code="' . $_SESSION['UserNIT'] . '"> Configuraciones</a></li>
+                    ';
+            } else {
+                echo '<li><a href="registration.php">Registro</a></li>';
+            }
+            ?>
+        </ul>
+    </div>
+    <?php if (isset($_SESSION['nombreUser'])) : ?>
+        <div class="modal fade" id="ModalUpUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <form class="modal-content FormCatElec" action="Controller/updateClient.php" method="POST" data-form="save" autocomplete="off">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Configuraciones</h4>
+                    </div>
+                    <div class="modal-body" id="UserConData">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-info">Guardar cambios</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    <?php endif; ?>
+    <?php
+            $content=$_GET['view'];
+            $WhiteList=["registro","publicReport","NewPost","CategoriList","solPubli"];
+            if(isset($content)){
+              if(in_array($content, $WhiteList) && is_file("View/".$content.".php")){
+                include "View/".$content.".php";
+              }else{
+                echo '<h2 class="text-center">Lo sentimos, la opción que ha seleccionado no se encuentra disponible</h2>';
+              }
+            }else{
+              echo '<h2 class="text-center">Para empezar, por favor escoja una opción del menú </h2>';
+            }
+          ?>
+
 
     <?php include './View/footer.php'; ?>
 </body>

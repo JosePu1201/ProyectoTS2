@@ -20,6 +20,7 @@
                     $_SESSION['claveAdmin']=$clave;
                     $_SESSION['UserType']="Admin";
                     $_SESSION['adminID']=$nombre;
+                    $directorio_actual = getcwd();
                     echo '<script> location.href="index.php"; </script>';
                 }else{
                     echo 'Ocurrio un error con el usuario, no tiene el rol que indicas';

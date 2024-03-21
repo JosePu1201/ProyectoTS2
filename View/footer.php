@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-sm-4">
                 <h4 class="text-footer">Contactanos</h4>
-                <a href="https://www.facebook.com/niceaccesoriosdetalles" target="_blank">
+                <a href="https://www.facebook.com/sistemascunoc" target="_blank">
                     <i class="fa fa-facebook" aria-hidden="true">&nbsp; Facebook </i> 
                 </a><br>
                 <a href="https://maps.app.goo.gl/yADTyWR9L5hxbXQV8" target="_blank">
