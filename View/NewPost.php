@@ -17,7 +17,7 @@ if ($verdaderoRolUser > 0) {
         <div class="col-xs-12">
             <div class="container-form-admin">
                 <h3 class="text-primary text-center">Agregar un producto a la tienda</h3>
-                <form action="../Controller/regproduct.php" method="POST" enctype="multipart/form-data" class="FormCatElec" data-form="save">
+                <form action="Controller/regproduct.php" method="POST" enctype="multipart/form-data" class="FormCatElec" data-form="save">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12">
@@ -27,7 +27,7 @@ if ($verdaderoRolUser > 0) {
                                 <div class="form-group label-floating">
                                     <label class="control-label">Descripcion de la publicacion</label>
                                     <!-- Cambio a textarea para permitir múltiples líneas -->
-                                    <textarea class="form-control" required maxlength="500" name="prod-name" rows="3"></textarea>
+                                    <textarea class="form-control" required maxlength="500" name="descripcion" rows="3"></textarea>
                                 </div>
                             </div>
 
@@ -85,7 +85,7 @@ if ($verdaderoRolUser > 0) {
                         </div>
                     </div>
                     <input type="hidden" name="usuario" value="<?php echo $_SESSION['nombreUser'] ?>">
-                    <p class="text-center"><button type="submit" class="btn btn-primary btn-raised">Agregar a la tienda</button></p>
+                    <p class="text-center"><button type="submit" class="btn btn-primary btn-raised">Agregar publicacion</button></p>
                 </form>
             </div>
         </div>
