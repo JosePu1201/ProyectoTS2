@@ -1,4 +1,3 @@
-
 <?php
 include "../Model/configServer.php";
 include "../Model/consulSQL.php";
@@ -14,77 +13,53 @@ if ($verdaderoRolUser > 0) {
 ?>
 
 <div class="container">
-	<div class="row">
+    <div class="row">
         <div class="col-xs-12">
             <div class="container-form-admin">
                 <h3 class="text-primary text-center">Agregar un producto a la tienda</h3>
-                <form action="./process/regproduct.php" method="POST" enctype="multipart/form-data" class="FormCatElec" data-form="save">
+                <form action="../Controller/regproduct.php" method="POST" enctype="multipart/form-data" class="FormCatElec" data-form="save">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-12">
                                 <legend>Datos básicos</legend>
                             </div>
                             <div class="col-xs-12 col-sm-6 col-md-4">
-                              <div class="form-group label-floating">
-                                <label class="control-label">Código de producto</label>
-                                <input type="text" class="form-control" required maxlength="30" name="prod-codigo">
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                              <div class="form-group label-floating">
-                                <label class="control-label">Nombre de producto</label>
-                                <input type="text" class="form-control" required maxlength="30" name="prod-name">
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                              <div class="form-group label-floating">
-                                <label class="control-label">Marca</label>
-                                <input type="text" class="form-control" required name="prod-marca">
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                              <div class="form-group label-floating">
-                                <label class="control-label">Modelo</label>
-                                <input type="text" class="form-control" required name="prod-model">
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                              <div class="form-group label-floating">
-                                <label class="control-label">Precio al publico</label>
-                                <input type="text" class="form-control" required maxlength="20" pattern="[0-9.]{1,20}" name="prod-price">
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                              <div class="form-group label-floating">
-                                <label class="control-label">Descuento (%)</label>
-                                <input type="text" class="form-control" required maxlength="2" pattern="[0-9]{1,2}" name="prod-desc-price" value="0">
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                              <div class="form-group label-floating">
-                                <label class="control-label">Unidades disponibles</label>
-                                <input type="text" class="form-control" required maxlength="20" pattern="[0-9]{1,20}" name="prod-stock">
-                              </div>
-                            </div>
-                            <div class="col-xs-12 col-sm-6 col-md-4">
-                              <div class="form-group label-floating">
-                                <label class="control-label">Precio de compra</label>
-                                <input type="text" class="form-control" required maxlength="20" pattern="[0-9.]{1,20}" name="prod-inversion">
-                              </div>
-                            </div>
-                            <div class="col-xs-12">
-                                <legend>Categoría, proveedor y estado</legend>
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Descripcion de la publicacion</label>
+                                    <!-- Cambio a textarea para permitir múltiples líneas -->
+                                    <textarea class="form-control" required maxlength="500" name="prod-name" rows="3"></textarea>
+                                </div>
                             </div>
 
                             <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Precio al publico</label>
+                                    <input type="text" class="form-control" required maxlength="20" pattern="[0-9.]{1,20}" name="precio">
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="form-group label-floating">
+                                    <label class="control-label">Ubicacion</label>
+                                    <input type="text" class="form-control" required maxlength="150" name="ubicacion">
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <legend>Categoría</legend>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-4">
                               <div class="form-group">
-                                <label>Estado</label>
-                                <select class="form-control" name="prod-estado">
-                                    <option value="Activo" selected="">Activo</option>
-                                    <option value="Desactivado">Desactivado</option>
+                                <label>Categoría</label>
+                                <select class="form-control" name="categoria">
+                                    <?php
+                                        $categoriac= ejecutarSQL::consultar("SELECT * FROM Categoria");
+                                        while($catec=mysqli_fetch_array($categoriac, MYSQLI_ASSOC)){
+                                            echo '<option value="'.$catec['ID'].'">'.$catec['Nombre'].'</option>';
+                                        }
+                                    ?>
                                 </select>
                               </div>
                             </div>
+
                             <div class="col-xs-12">
                                 <legend>Imagen/Foto del producto</legend>
                                 <p class="text-center text-primary">
@@ -93,24 +68,27 @@ if ($verdaderoRolUser > 0) {
                             </div>
                             <div class="col-xs-12">
                                 <div class="form-group">
-                                  <input type="file" name="img">
-                                  <div class="input-group">
-                                    <input type="text" readonly="" class="form-control" placeholder="Seleccione la imagen del producto...">
-                                      <span class="input-group-btn input-group-sm">
-                                        <button type="button" class="btn btn-fab btn-fab-mini">
-                                          <i class="fa fa-file-image-o" aria-hidden="true"></i>
-                                        </button>
-                                      </span>
-                                  </div>
+                                    <!-- Modifica aquí: agrega "[]" al nombre y el atributo "multiple" -->
+                                    <input type="file" name="img[]" multiple>
+                                    <div class="input-group">
+                                        <input type="text" readonly="" class="form-control" placeholder="Seleccione las imágenes del producto...">
+                                        <span class="input-group-btn input-group-sm">
+                                            <button type="button" class="btn btn-fab btn-fab-mini">
+                                                <i class="fa fa-file-image-o" aria-hidden="true"></i>
+                                            </button>
+                                        </span>
+                                    </div>
                                     <p class="help-block">Formato de imágenes admitido png y jpg. Tamaño máximo 5MB</p>
                                 </div>
                             </div>
+
                         </div>
                     </div>
-                <input type="hidden"  name="admin-name" value="<?php echo $_SESSION['nombreAdmin'] ?>">
-                <p class="text-center"><button type="submit" class="btn btn-primary btn-raised">Agregar a la tienda</button></p>
+                    <input type="hidden" name="usuario" value="<?php echo $_SESSION['nombreUser'] ?>">
+                    <p class="text-center"><button type="submit" class="btn btn-primary btn-raised">Agregar a la tienda</button></p>
                 </form>
             </div>
-        </div>     
+        </div>
     </div>
 </div>
+<br><br><br><br><br>
