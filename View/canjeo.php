@@ -3,7 +3,7 @@
         <div class="col-xs-12">
             <div class="container-form">
                 <h3 class="text-primary text-center">Canjea de tu billetera virtual</h3>
-                <form action="../Controller/canjearMonedas.php" method="POST" enctype="multipart/form-data" class="FormCatElec" data-form="save">
+                <form action="Controller/canjearMonedas.php" role="form" method="POST" data-form="save">
                     <div class="container-fluid">
                         <div class="col-xs-12 col-sm-6 col-md-4">
                             <div class="form-group label-floating">
