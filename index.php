@@ -46,7 +46,7 @@
                                 $result = "no encontrador";
                             }
                             echo ' 
-                            <a class ="table-cell-td"> Mis monedas: '. $result . ' </a>
+                            <a href="index.php?view=billetera" class ="table-cell-td"> Mi billetera = '. $result . ' </a>
                           <a href="index.php?view=publicacion" class="table-cell-td">Mis publicaciones</a>
                               <a href="index.php?view=NewPost" class="table-cell-td">Nueva publicacion</a>
                               <a href="#!" class="table-cell-td exit-system">
@@ -189,7 +189,7 @@
     <?php endif; ?>
     <?php
             $content=$_GET['view'];
-            $WhiteList=["registro","publicReport","NewPost","CategoriList","solPubli"];
+            $WhiteList=["registro","publicReport","NewPost","CategoriList","solPubli","billetera","canjeo","recarga"];
             if(isset($content)){
               if(in_array($content, $WhiteList) && is_file("View/".$content.".php")){
                 include "View/".$content.".php";

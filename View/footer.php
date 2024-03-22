@@ -15,11 +15,11 @@
             <div class="col-sm-4">
                 <h4 class="text-footer">¿Por qué elegirnos?</h4>
                <p>
-    Nos enorgullece ofrecerte la mejor selección de accesorios para que te sientas bellamente única. Nos destacamos por:
+    Nos enorgullece ofrecerte la mejor variedad de productos y servicios para que te sientas el protagonista en tus compras. Nos destacamos por:
     <span style="display: block;">- Variedad Exclusiva.</span>
     <span style="display: block;">- Precios Competitivos.</span>
     <span style="display: block;">- Calidad Inigualable.</span>
-    Descubre la diferencia en NICE ACCESORIOS: ¡tu destino para realzar tu belleza con estilo y asequibilidad!
+    Descubre la diferencia en COMERCIO ELECTRONICO: ¡tu destino para realzar tuS compras con estilo y asequibilidad!
 </p>
 
             </div>
@@ -33,5 +33,5 @@
         </div>
     </div>
     <br><br><br>
-    <h5 class="text-center tittles-pages-logo text-footer">NICE ACCESORIOS &copy; 2023</h5>
+    <h5 class="text-center tittles-pages-logo text-footer">COMERCIO ELECTRONICO &copy; 2024</h5>
 </footer>
