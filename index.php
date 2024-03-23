@@ -38,15 +38,14 @@
                             include "./Model/consulSQL.php";
                             $nombreUsaurio = $_SESSION['nombreUser'];
                             $verBilletera = ejecutarSQL::consultar("SELECT Usuario, (MonedaCambio + MonedaVirtula) AS TotalMonedas FROM Billetera WHERE Usuario = '$nombreUsaurio'");
-                            $result ="";
-                            if($existe =  mysqli_fetch_assoc($verBilletera)){
+                            $result = "";
+                            if ($existe =  mysqli_fetch_assoc($verBilletera)) {
                                 $result = $existe['TotalMonedas'];
-                            }
-                            else{
+                            } else {
                                 $result = "no encontrador";
                             }
                             echo ' 
-                            <a href="index.php?view=billetera" class ="table-cell-td"> Mi billetera = '. $result . ' </a>
+                            <a href="index.php?view=billetera" class ="table-cell-td"> Mi billetera = ' . $result . ' </a>
                           <a href="index.php?view=publicacion" class="table-cell-td">Mis publicaciones</a>
                               <a href="index.php?view=NewPost" class="table-cell-td">Nueva publicacion</a>
                               <a href="#!" class="table-cell-td exit-system">
@@ -188,20 +187,36 @@
         </div>
     <?php endif; ?>
     <?php
-            $content=$_GET['view'];
-            $WhiteList=["registro","publicReport","NewPost","CategoriList","solPubli","billetera","canjeo","recarga"];
-            if(isset($content)){
-              if(in_array($content, $WhiteList) && is_file("View/".$content.".php")){
-                include "View/".$content.".php";
-              }else{
-                echo '<h2 class="text-center">Lo sentimos, la opción que ha seleccionado no se encuentra disponible</h2>';
-              }
-            }else{
-              echo '<h2 class="text-center">Para empezar, por favor escoja una opción del menú </h2>';
-            }
-          ?>
+    $content = $_GET['view'];
+    $WhiteList = ["registro", "publicReport", "NewPost", "CategoriList", "solPubli", "billetera", "canjeo", "recarga", "inicio"];
+    if (isset($content)) {
+        if (in_array($content, $WhiteList) && is_file("View/" . $content . ".php")) {
+            include "View/" . $content . ".php";
+        } else {
+            echo '<h2 class="text-center">Lo sentimos, la opción que ha seleccionado no se encuentra disponible</h2>';
+        }
+    } else {
+        echo '<h2 class="text-center"> </h2>';
+    }
+    ?>
 
-
+<div class="publicaciones-container">
+    
+    <div class="publicacion">
+        <h2>Publicación ID: <?= $fila['ID']; ?></h2>
+        <p><strong>Descripción:</strong> <?= $fila['Descripcion']; ?></p>
+        <p><strong>Estado:</strong> <?= $fila['Estado']; ?></p>
+        <p><strong>Precio:</strong> $<?= $fila['Precio']; ?></p>
+        <p><strong>Ubicación:</strong> <?= $fila['Ubicacion']; ?></p>
+        <p><strong>Publicado por:</strong> <?= $fila['Publicador']; ?></p>
+        <div class="acciones">
+            <button>Me gusta</button>
+            <button>Comentar</button>
+            <!-- Aquí puedes añadir más botones o enlaces según necesites -->
+        </div>
+    </div>
+    
+</div>
     <?php include './View/footer.php'; ?>
 </body>
 
