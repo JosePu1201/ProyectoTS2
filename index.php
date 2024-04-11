@@ -22,7 +22,7 @@
                 <div class="contenedor-tabla pull-right">
                     <br>
                     <div class="contenedor-tr">
-                        <a href="index.php" class="table-cell-td">Inicio</a>
+                        <a href="index.php?view=inicio" class="table-cell-td">Inicio</a>
                         <?php
                         if (!$_SESSION['nombreAdmin'] == "") {
                             echo ' 
@@ -188,7 +188,7 @@
     <?php endif; ?>
     <?php
     $content = $_GET['view'];
-    $WhiteList = ["registro", "publicReport", "NewPost", "CategoriList", "solPubli", "billetera", "canjeo", "recarga", "inicio"];
+    $WhiteList = ["registro", "publicReport", "listCat","newCat","NewPost", "publicacion","inicio","CategoriList", "solPubli", "billetera", "canjeo", "recarga", "inicio"];
     if (isset($content)) {
         if (in_array($content, $WhiteList) && is_file("View/" . $content . ".php")) {
             include "View/" . $content . ".php";
@@ -199,24 +199,6 @@
         echo '<h2 class="text-center"> </h2>';
     }
     ?>
-
-<div class="publicaciones-container">
-    
-    <div class="publicacion">
-        <h2>Publicación ID: <?= $fila['ID']; ?></h2>
-        <p><strong>Descripción:</strong> <?= $fila['Descripcion']; ?></p>
-        <p><strong>Estado:</strong> <?= $fila['Estado']; ?></p>
-        <p><strong>Precio:</strong> $<?= $fila['Precio']; ?></p>
-        <p><strong>Ubicación:</strong> <?= $fila['Ubicacion']; ?></p>
-        <p><strong>Publicado por:</strong> <?= $fila['Publicador']; ?></p>
-        <div class="acciones">
-            <button>Me gusta</button>
-            <button>Comentar</button>
-            <!-- Aquí puedes añadir más botones o enlaces según necesites -->
-        </div>
-    </div>
-    
-</div>
     <?php include './View/footer.php'; ?>
 </body>
 
