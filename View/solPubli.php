@@ -22,7 +22,7 @@ if ($consulta) {
     // Loop through each row in the result set
     while ($fila = mysqli_fetch_assoc($consulta)) {
         if($fila['Estado']=="Oculto"){
-            echo "<div class='post'>";
+        echo "<div class='col-sm-7'>";
         // Output the Publicador column at the beginning of post-body
         echo "<div class='post-body'>";
         echo "<p class='publicador'>Publicado por: " . $fila['Publicador'] . "</p>";
@@ -33,16 +33,20 @@ if ($consulta) {
         // Output buttons or additional information if needed
         echo "</div>";
         echo "<div class='post-button'>";
-        echo "<form action='Controller/aceptar.php' method='POST'>";
-        echo "<input type='hidden' name='id' value='" . $fila['ID'] . "'>";
+        echo "<form action='Controller/aceptar.php'  class='FormCatElec' method='POST' role='form' data-form='save' >";
+        echo "<input class='form-control' type='hidden' name='id' value='" . $fila['ID'] . "'>";
         echo "<button type='submit' name='aceptar' class='btn btn-success'>Aceptar</button>";
+
+        echo"<div class= 'col-sm-7'>";
         echo "</form>";
-        echo "<form action='Controller/rechazar.php' method='POST'>";
-        echo "<input type='hidden' name='id' value='" . $fila['ID'] . "'>";
+        echo "<form action='Controller/rechazar.php' method='POST' class='FormCatElec'  role='form' data-form='save' >";
+        echo "<input type='hidden' class='form-control' name='idR' value='" . $fila['ID'] . "'>";
         echo "<button type='submit' name='rechazar' class='btn btn-danger'>Rechazar</button>";
         echo "</form>";
         echo "</div>";
         echo "</div>";
+        echo "</div>";
+        echo "<br><br><br><br><br><br><br><br><br><br><br><br>";
         }else{
             
         }

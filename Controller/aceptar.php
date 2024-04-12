@@ -4,7 +4,6 @@ include '../Model/configServer.php';
 include '../Model/consulSQL.php';
 
 $IdPubli = $_POST['id'];
-
 if(consultasSQL::UpdateSQL("Publicacion","Estado='visible'","ID='$IdPubli'")){
     echo '<script>
     swal({

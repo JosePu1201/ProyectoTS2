@@ -3,13 +3,13 @@ session_start();
 include '../Model/configServer.php';
 include '../Model/consulSQL.php';
 
-$IdPubli = $_POST['id'];
+$IdPubli = $_POST['idR'];
 
 if (consultasSQL::UpdateSQL("Publicacion", "Estado='rechazado'", "ID='$IdPubli'")) {
     echo '<script>
                     swal({
-                      title: "Registro de categoria completado",
-                      text: "El registro se completó con éxito, ya puedes usar la categoria",
+                      title: "Publicacion actualizada con exito",
+                      text: "Rechazaste esta publicacion",
                       type: "success",
                       showCancelButton: true,
                       confirmButtonClass: "btn-danger",
