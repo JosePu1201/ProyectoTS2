@@ -37,7 +37,7 @@
                             include "./Model/configServer.php";
                             include "./Model/consulSQL.php";
                             $nombreUsaurio = $_SESSION['nombreUser'];
-                            $verBilletera = ejecutarSQL::consultar("SELECT Usuario, (MonedaCambio + MonedaVirtula) AS TotalMonedas FROM Billetera WHERE Usuario = '$nombreUsaurio'");
+                            $verBilletera = ejecutarSQL::consultar("SELECT Usuario, (MonedaCambio + MonedaVirtual) AS TotalMonedas FROM Billetera WHERE Usuario = '$nombreUsaurio'");
                             $result = "";
                             if ($existe =  mysqli_fetch_assoc($verBilletera)) {
                                 $result = $existe['TotalMonedas'];

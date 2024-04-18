@@ -1,3 +1,6 @@
+<div>
+    <h1>Si realizas una compra se tratara de debitar la compra primero en tu moneda virtual</h1>
+</div>
 <?php
 if (!$_SESSION['nombreUser'] == "") {
     include '../Model/configServer.php';
@@ -16,7 +19,8 @@ $consulta = ejecutarSQL::consultar("
         Estado,
         Precio,
         Ubicacion,
-        Publicador
+        Publicador,
+        ID_Categoria
     FROM
         Publicacion
     ORDER BY
@@ -27,7 +31,7 @@ $consulta = ejecutarSQL::consultar("
 if ($consulta) {
     // Loop through each row in the result set
     while ($fila = mysqli_fetch_assoc($consulta)) {
-        if($fila['Estado']=="visible"){
+        if($fila['Estado']=="visible" && $fila['Publicador'] != $_SESSION['nombreUser'] && $fila['ID_Categoria']==2){
             echo "<div class='post'>";
         // Output the Publicador column at the beginning of post-body
         echo "<div class='post-body'>";
@@ -68,7 +72,7 @@ if ($consulta) {
             
             echo "<td>";
             echo "<form action='Controller/comprar.php' method='POST' class='FormCatElec' role='form' data-form='save'>";
-            echo "<input type='hidden' class='form-control' name='id' value='" . $fila['ID'] . "'>";
+            echo "<input type='hidden' class='form-control' name='idPubli' value='" . $fila['ID'] . "'>";
             echo "<button type='submit' name='comprar' class='btn btn-success'>Comprar</button>";
             echo "</form>";
             echo "</td>";
